@@ -1,0 +1,50 @@
+{
+  "name": "cjs",
+  "version": "1.0.0",
+  "description": "pure js framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "cross-env NODE_ENV=production webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sieugene/cjs.git"
+  },
+  "keywords": [
+    "pure",
+    "js",
+    "js",
+    "framework"
+  ],
+  "author": "sieugene",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sieugene/cjs/issues"
+  },
+  "homepage": "https://github.com/sieugene/cjs#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.3",
+    "path": "^0.12.7",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^3.11.1",
+    "webpack-serve": "^3.2.0"
+  },
+  "dependencies": {}
+}
