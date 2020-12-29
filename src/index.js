@@ -1,8 +1,9 @@
-import { test } from "./test";
-import './index.scss';
+import "./index.scss";
 
 async function component() {
-  const element = document.createElement("div");
+  const element = document.querySelector("#root");
+  element.innerHTML = "hello this basic template";
+  console.log('async fn be started')
   const res = await fetching();
   console.log(res);
   return element;
@@ -18,4 +19,3 @@ const fetching = async () => {
 };
 
 component();
-test();

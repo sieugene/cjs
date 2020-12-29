@@ -10,6 +10,14 @@ const isDev = !isProd;
 
 const filename = (ext) => (isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`);
 
+const jsLoaders = () => {
+  const loaders = ["babel-loader"];
+  if (isDev) {
+    loaders.push("eslint-loader");
+  }
+  return loaders;
+};
+
 module.exports = {
   mode: "development",
   context: path.resolve(__dirname, "src"),
@@ -32,8 +40,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: "babel-loader",
+        test: /\.m?js$/,
+        use: jsLoaders(),
         exclude: "/node_modules/",
       },
       {
@@ -51,14 +59,14 @@ module.exports = {
       },
     }),
     new CleanWebpackPlugin(),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: path.resolve(__dirname, "src/favicon.ico"),
-    //       to: path.resolve(__dirname, "dist"),
-    //     },
-    //   ],
-    // }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "src/favicon.ico"),
+          to: path.resolve(__dirname, "dist"),
+        },
+      ],
+    }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
