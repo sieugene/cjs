@@ -1,9 +1,14 @@
 import "./index.scss";
+import image from "./pipe-copy.jpg";
 
 async function component() {
   const element = document.querySelector("#root");
   element.innerHTML = "hello this basic template";
-  console.log('async fn be started')
+  const myIcon = new Image();
+  myIcon.src = image;
+  element.appendChild(myIcon);
+  
+  console.log("async fn be started");
   const res = await fetching();
   console.log(res);
   return element;

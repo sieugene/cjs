@@ -48,11 +48,22 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "static/[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: "../static/index.html",
       minify: {
         removeComments: isProd,
         collapseWhitespace: isProd,
@@ -62,8 +73,11 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src/favicon.ico"),
-          to: path.resolve(__dirname, "dist"),
+          from: path.resolve(__dirname, "static"),
+          globOptions: {
+            ignore: ["**/css/my.css", "**/js/my.js", "**/index.html"],
+          },
+          to: "static",
         },
       ],
     }),
