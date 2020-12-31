@@ -1,6 +1,9 @@
 class Dom {
   constructor(selector) {
-    this.$element = selector ? document.querySelector(selector) : undefined;
+    this.$element =
+      selector && typeof selector === "object"
+        ? selector
+        : document.querySelector(selector);
   }
   find(selector) {
     return this.$element.querySelector(selector);
@@ -9,7 +12,11 @@ class Dom {
     if (!content) {
       throw new Error("Children must be contain content!");
     }
-    this.$element.innerHTML = content;
+    this.$element.innerHTML = content
+      .trim()
+      .split("\n")
+      .map((line) => line.trim())
+      .join("\n");
   }
   create(tagName, classes = "") {
     const el = document.createElement(tagName);

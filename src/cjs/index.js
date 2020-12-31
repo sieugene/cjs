@@ -1,4 +1,5 @@
 import { dom } from "./core/Dom";
+import { Component } from "./core/Component";
 
 class CJS {
   constructor(components = [], selector) {
@@ -6,37 +7,32 @@ class CJS {
     this.$components = components;
   }
   render() {
-    const childrens = this._prepareComponents();
-    // this.$selector.html(childrens);
-    const nodes = createElement(childrens)
-    this.$selector.$element.appendChild(...nodes)
+    this._injectChilds(this._prepareComponents());
+  }
+  _injectChilds(components) {
+    if (components && components.length >= 1) {
+      components.forEach((a) => {
+        this.$selector.$element.appendChild(a);
+      });
+    } else {
+      throw new Error("Must be contain components");
+    }
   }
   _prepareComponents() {
     if (this.$components && this.$components.length >= 1) {
-      let content = "";
+      const components = [];
       this.$components.forEach(($component) => {
-        content = content + $component().children;
+        const component = new Component(
+          "div",
+          $component().children,
+          $component().props
+        );
+        components.push(...component.createComponent());
       });
-      return content;
+      return components;
     }
     return false;
   }
 }
 
 export default CJS;
-
-function createElement(str) {
-  const frag = document.createDocumentFragment();
-
-  const elem = document.createElement("div");
-  elem.innerHTML = str;
-
-  while (elem.childNodes[0]) {
-    frag.appendChild(elem.childNodes[0]);
-  }
-  const children = frag.children[0];
-  children.onclick = function () {
-    alert("Click Event Fired !");
-  };
-  return frag.childNodes;
-}
