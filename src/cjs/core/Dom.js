@@ -1,3 +1,4 @@
+import { removeWhiteSpace } from "./../utils/helper.functions";
 class Dom {
   constructor(selector) {
     this.$element =
@@ -12,11 +13,12 @@ class Dom {
     if (!content) {
       throw new Error("Children must be contain content!");
     }
-    this.$element.innerHTML = content
-      .trim()
-      .split("\n")
-      .map((line) => line.trim())
-      .join("\n");
+    this.$element.innerHTML = removeWhiteSpace(content);
+  }
+  get htmlTemplate() {
+    return this.$element && this.$element.innerHTML
+      ? this.$element.innerHTML
+      : "";
   }
   create(tagName, classes = "") {
     const el = document.createElement(tagName);

@@ -1,37 +1,17 @@
 import { dom } from "./core/Dom";
-import { Component } from "./core/Component";
+// import { Component } from "./core/Component";
+import { Core } from "./core/Core";
 
-class CJS {
+class CJS extends Core {
   constructor(components = [], selector) {
-    this.$selector = dom(selector);
-    this.$components = components;
+    super(dom(selector).$element, {
+      components,
+    });
+    this.$selector = this.root;
+    this.$components = this.components;
   }
   render() {
-    this._injectChilds(this._prepareComponents());
-  }
-  _injectChilds(components) {
-    if (components && components.length >= 1) {
-      components.forEach((a) => {
-        this.$selector.$element.appendChild(a);
-      });
-    } else {
-      throw new Error("Must be contain components");
-    }
-  }
-  _prepareComponents() {
-    if (this.$components && this.$components.length >= 1) {
-      const components = [];
-      this.$components.forEach(($component) => {
-        const component = new Component(
-          "div",
-          $component().children,
-          $component().props
-        );
-        components.push(...component.createComponent());
-      });
-      return components;
-    }
-    return false;
+    this.injectChilds();
   }
 }
 
