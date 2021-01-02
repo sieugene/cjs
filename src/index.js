@@ -1,15 +1,5 @@
 import CJS from "./cjs/index";
+import { App, App2 } from "./Components/App";
 
-function Component() {
-  return {
-    tag: "div",
-    inner: "ТЕКСТ!!!!!!!!",
-    event: "onclick",
-    fn: () => {
-      alert("test");
-    },
-  };
-}
-
-const app = new CJS([Component()], "#root");
+const app = new CJS([App, App2], "#root");
 app.render();

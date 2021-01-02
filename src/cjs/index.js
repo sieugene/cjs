@@ -1,4 +1,8 @@
 import { dom } from "./core/Dom";
+<<<<<<< HEAD
+import { Core } from "./core/Core";
+=======
+>>>>>>> 6157904b0d22634f27aaf806235590e98a738f2a
 
 class CJS {
   constructor(components = [], selector) {
