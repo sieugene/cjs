@@ -36,7 +36,6 @@ export function prepareTemplate(template, ComponentChildrens) {
         );
       }
     });
-    debugger
     return _prepareTemplate;
   } else {
     throw new Error("Template can't be prepared");
@@ -71,6 +70,7 @@ function getEventAttibuteName(findEventInTemplate) {
 //Set event in node child
 function attributeBindingEqualSet(children, fn, attribute, _protoEventName) {
   fn.forEach((eventFn) => {
+    // debugger
     if (eventFn.eventAttribute === attribute.original) {
       children[_protoEventName] = eventFn.fn;
       children.removeAttribute(attribute.formatted);
@@ -84,6 +84,7 @@ function setEvent(children, attributes, fn) {
         attribute &&
         attribute.formatted &&
         attribute.formatted.replace("@", "");
+      // debugger
       if (
         children &&
         attribute &&

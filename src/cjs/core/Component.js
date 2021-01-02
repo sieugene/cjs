@@ -19,9 +19,22 @@ export class Component {
     return document.createDocumentFragment();
   }
   addEvents(template, fragmentChildrens) {
+    const compareEvents = Object.keys(this.$props.children).reduce(
+      (allEvents, component) => {
+        if (this.$props.children[component]) {
+          const Component = this.$props.children[component]();
+          allEvents = {
+            ...allEvents,
+            ...Component.events,
+          };
+        }
+        return allEvents;
+      },
+      this.$events
+    );
     return prepareEvents(
       template ? template : this.$content,
-      getEventsChildren(this.$events),
+      getEventsChildren(compareEvents),
       fragmentChildrens
     );
   }

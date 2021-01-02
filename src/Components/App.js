@@ -1,5 +1,5 @@
 export const App = () => {
-  function some() {
+  function some1() {
     alert("test");
   }
   return {
@@ -10,51 +10,49 @@ export const App = () => {
       },
     },
     children: `<div class="wrap">
-          <h3 class="test" @onclick="some">   Шаблон 1!!!! text in h3     </h3>
+          <h3 class="test" @onclick="some1">   Шаблон 1!!!! text in h3     </h3>
         <Component2/>
         <Component3/>
       </div>`,
     events: {
-      some: () => some(),
+      some1: () => some1(),
     },
   };
 };
 export const App2 = () => {
-  function some(e) {
+  function some2(e) {
     alert("was click");
   }
-  function onhandler(event) {
-    debugger;
-  }
+  function onhandler(event) {}
   return {
     props: {
       children: {},
     },
-    children: `<div id="APP2" @onclick="some">
+    children: `<div id="APP2" @onclick="some2">
     <div>чилд нода</div>
           NEW TEST1221321321312312
           <input @onchange="onhandler" placeholder="text input events test"/>
       </div>`,
     events: {
-      some: (e) => some(e),
+      some2: (e) => some2(e),
       onhandler: (e) => onhandler(e),
     },
   };
 };
 const Component2 = () => {
-  function some() {
+  function some3() {
     alert("test");
   }
   return {
     props: "",
-    children: `<div id="ISA">
+    children: `<div id="ISA" @onclick="some3">
       Шаблон 2!!!!
         <div>
-          <h3 class="test from 2" @onclick="some">--------------</h3>
+          <h3 class="test from 2">--------------</h3>
         </div>
       </div>`,
     events: {
-      some: () => some(),
+      some3: () => some3(),
     },
   };
 };
