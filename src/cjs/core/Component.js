@@ -1,10 +1,10 @@
 import { dom } from "./Dom";
 import {
-  prepareEvents,
   getEventsChildren,
+  prepareEvents,
   getPropsChildrens,
   prepareTemplate,
-} from "./../utils/component.functions";
+} from "./../utils/component.function";
 
 export class Component {
   constructor(tag, content, props = {}, events = {}) {

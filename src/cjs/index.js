@@ -1,5 +1,4 @@
 import { dom } from "./core/Dom";
-// import { Component } from "./core/Component";
 import { Core } from "./core/Core";
 
 class CJS extends Core {
